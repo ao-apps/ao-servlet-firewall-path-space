@@ -39,15 +39,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * A set of {@link Matcher} implementations for {@link PathMatch}.
+ * A set of {@link Matcher} and {@link Action} implementations for {@link PathSpace} and {@link PathMatch}.
  *
  * @implNote  This is admittedly overload-heavy.  We are paying the price here in order to have the absolutely
  *            cleanest possible rule definitions.  Perhaps a future version of Java will introduce optional parameters
  *            and this can be cleaned-up some.
  */
-public class Matchers {
+public class Rules {
 
-	private Matchers() {}
+	private Rules() {}
+
+	// TODO: servletSpace
 
 	// <editor-fold defaultstate="collapsed" desc="pathMatch">
 	/**
