@@ -24,6 +24,7 @@ package com.aoindustries.servlet.firewall.pathspace;
 
 import com.aoindustries.net.Path;
 import com.aoindustries.net.pathspace.PathSpace.PathMatch;
+import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.servlet.firewall.api.FirewallContext;
 import com.aoindustries.servlet.firewall.api.Matcher;
 import com.aoindustries.servlet.firewall.api.Matcher.Result;
@@ -103,7 +104,7 @@ public class Matchers {
 			abstract protected boolean matches(
 				FirewallContext context,
 				HttpServletRequest request,
-				com.aoindustries.net.pathspace.Prefix prefix,
+				Prefix prefix,
 				Path prefixPath,
 				Path path
 			) throws IOException, ServletException;
@@ -144,10 +145,9 @@ public class Matchers {
 			 *
 			 * @see  #perform(com.aoindustries.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
-			abstract protected boolean matches(
-				FirewallContext context,
+			abstract protected boolean matches(				FirewallContext context,
 				HttpServletRequest request,
-				com.aoindustries.net.pathspace.Prefix prefix,
+				Prefix prefix,
 				Path prefixPath,
 				Path path
 			) throws IOException, ServletException;
@@ -194,7 +194,7 @@ public class Matchers {
 			abstract protected boolean matches(
 				FirewallContext context,
 				HttpServletRequest request,
-				com.aoindustries.net.pathspace.Prefix prefix,
+				Prefix prefix,
 				Path prefixPath,
 				Path path
 			) throws IOException, ServletException;
@@ -217,7 +217,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return _prefix.toString().startsWith(prefix);
 					}
 				};
@@ -234,7 +234,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return _prefix.toString().startsWith(prefix);
 					}
 				};
@@ -252,7 +252,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return _prefix.toString().startsWith(prefix);
 					}
 				};
@@ -294,7 +294,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().endsWith(suffix);
 					}
 				};
@@ -311,7 +311,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return _prefix.toString().endsWith(suffix);
 					}
 				};
@@ -329,7 +329,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return _prefix.toString().endsWith(suffix);
 					}
 				};
@@ -371,7 +371,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contains(substring);
 					}
 				};
@@ -388,7 +388,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contains(substring);
 					}
 				};
@@ -406,7 +406,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contains(substring);
 					}
 				};
@@ -442,12 +442,12 @@ public class Matchers {
 			/**
 			 * Matches when a request prefix is equal to a given string, case-sensitive.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#equals(java.lang.Object)
+			 * @see  Prefix#equals(java.lang.Object)
 			 */
-			public static Matcher equals(final com.aoindustries.net.pathspace.Prefix target) {
+			public static Matcher equals(final Prefix target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.equals(target);
 					}
 				};
@@ -458,12 +458,12 @@ public class Matchers {
 			 *
 			 * @param  rules  Invoked only when matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#equals(java.lang.Object)
+			 * @see  Prefix#equals(java.lang.Object)
 			 */
-			public static Matcher equals(final com.aoindustries.net.pathspace.Prefix target, Iterable<? extends Rule> rules) {
+			public static Matcher equals(final Prefix target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.equals(target);
 					}
 				};
@@ -475,12 +475,12 @@ public class Matchers {
 			 * @param  rules  Invoked only when matched.
 			 * @param  otherwise  Invoked only when not matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#equals(java.lang.Object)
+			 * @see  Prefix#equals(java.lang.Object)
 			 */
-			public static Matcher equals(final com.aoindustries.net.pathspace.Prefix target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
+			public static Matcher equals(final Prefix target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.equals(target);
 					}
 				};
@@ -491,9 +491,9 @@ public class Matchers {
 			 *
 			 * @param  rules  Invoked only when matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#equals(java.lang.Object)
+			 * @see  Prefix#equals(java.lang.Object)
 			 */
-			public static Matcher equals(com.aoindustries.net.pathspace.Prefix target, Rule ... rules) {
+			public static Matcher equals(Prefix target, Rule ... rules) {
 				if(rules.length == 0) return equals(target);
 				return equals(target, Arrays.asList(rules));
 			}
@@ -504,9 +504,9 @@ public class Matchers {
 			 * @param  rules  Invoked only when matched.
 			 * @param  otherwise  Invoked only when not matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#equals(java.lang.Object)
+			 * @see  Prefix#equals(java.lang.Object)
 			 */
-			public static Matcher equals(com.aoindustries.net.pathspace.Prefix target, Rule[] rules, Rule ... otherwise) {
+			public static Matcher equals(Prefix target, Rule[] rules, Rule ... otherwise) {
 				if(otherwise.length == 0) return equals(target, rules);
 				return equals(target, Arrays.asList(rules), Arrays.asList(otherwise));
 			}
@@ -514,10 +514,10 @@ public class Matchers {
 			/**
 			 * Matches when a request prefix is equal to a given string, case-sensitive.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#valueOf(java.lang.String)
+			 * @see  Prefix#valueOf(java.lang.String)
 			 */
 			public static Matcher equals(String target) {
-				return equals(com.aoindustries.net.pathspace.Prefix.valueOf(target));
+				return equals(Prefix.valueOf(target));
 			}
 
 			/**
@@ -525,10 +525,10 @@ public class Matchers {
 			 *
 			 * @param  rules  Invoked only when matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#valueOf(java.lang.String)
+			 * @see  Prefix#valueOf(java.lang.String)
 			 */
 			public static Matcher equals(String target, Iterable<? extends Rule> rules) {
-				return equals(com.aoindustries.net.pathspace.Prefix.valueOf(target), rules);
+				return equals(Prefix.valueOf(target), rules);
 			}
 
 			/**
@@ -537,10 +537,10 @@ public class Matchers {
 			 * @param  rules  Invoked only when matched.
 			 * @param  otherwise  Invoked only when not matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#valueOf(java.lang.String)
+			 * @see  Prefix#valueOf(java.lang.String)
 			 */
 			public static Matcher equals(String target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
-				return equals(com.aoindustries.net.pathspace.Prefix.valueOf(target), rules, otherwise);
+				return equals(Prefix.valueOf(target), rules, otherwise);
 			}
 
 			/**
@@ -548,10 +548,10 @@ public class Matchers {
 			 *
 			 * @param  rules  Invoked only when matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#valueOf(java.lang.String)
+			 * @see  Prefix#valueOf(java.lang.String)
 			 */
 			public static Matcher equals(String target, Rule ... rules) {
-				return equals(com.aoindustries.net.pathspace.Prefix.valueOf(target), rules);
+				return equals(Prefix.valueOf(target), rules);
 			}
 
 			/**
@@ -560,11 +560,11 @@ public class Matchers {
 			 * @param  rules  Invoked only when matched.
 			 * @param  otherwise  Invoked only when not matched.
 			 *
-			 * @see  com.aoindustries.net.pathspace.Prefix#valueOf(java.lang.String)
+			 * @see  Prefix#valueOf(java.lang.String)
 			 */
 			public static Matcher equals(String target, Rule[] rules, Rule ... otherwise) {
 				if(otherwise.length == 0) return equals(target, rules);
-				return equals(com.aoindustries.net.pathspace.Prefix.valueOf(target), rules, otherwise);
+				return equals(Prefix.valueOf(target), rules, otherwise);
 			}
 
 			/**
@@ -575,7 +575,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contentEquals(target);
 					}
 				};
@@ -591,7 +591,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contentEquals(target);
 					}
 				};
@@ -608,7 +608,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().contentEquals(target);
 					}
 				};
@@ -647,7 +647,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -663,7 +663,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -680,7 +680,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefix.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -720,7 +720,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 					   return pattern.matcher(prefix.toString()).matches();
 					}
 				};
@@ -737,7 +737,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(prefix.toString()).matches();
 					}
 				};
@@ -755,7 +755,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(prefix.toString()).matches();
 					}
 				};
@@ -803,7 +803,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefix.toString());
 					}
 				};
@@ -823,7 +823,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefix.toString());
 					}
 				};
@@ -844,7 +844,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefix.toString());
 					}
 				};
@@ -902,7 +902,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().startsWith(prefix);
 					}
 				};
@@ -919,7 +919,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().startsWith(prefix);
 					}
 				};
@@ -937,7 +937,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().startsWith(prefix);
 					}
 				};
@@ -979,7 +979,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().endsWith(suffix);
 					}
 				};
@@ -996,7 +996,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().endsWith(suffix);
 					}
 				};
@@ -1014,7 +1014,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().endsWith(suffix);
 					}
 				};
@@ -1056,7 +1056,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contains(substring);
 					}
 				};
@@ -1073,7 +1073,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contains(substring);
 					}
 				};
@@ -1091,7 +1091,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contains(substring);
 					}
 				};
@@ -1132,7 +1132,7 @@ public class Matchers {
 			public static Matcher equals(final Path target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.equals(target);
 					}
 				};
@@ -1148,7 +1148,7 @@ public class Matchers {
 			public static Matcher equals(final Path target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.equals(target);
 					}
 				};
@@ -1165,7 +1165,7 @@ public class Matchers {
 			public static Matcher equals(final Path target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.equals(target);
 					}
 				};
@@ -1279,7 +1279,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contentEquals(target);
 					}
 				};
@@ -1295,7 +1295,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contentEquals(target);
 					}
 				};
@@ -1312,7 +1312,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().contentEquals(target);
 					}
 				};
@@ -1351,7 +1351,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -1367,7 +1367,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -1384,7 +1384,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return prefixPath.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -1424,7 +1424,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(prefixPath.toString()).matches();
 					}
 				};
@@ -1441,7 +1441,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(prefixPath.toString()).matches();
 					}
 				};
@@ -1459,7 +1459,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(prefixPath.toString()).matches();
 					}
 				};
@@ -1507,7 +1507,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefixPath.toString());
 					}
 				};
@@ -1527,7 +1527,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefixPath.toString());
 					}
 				};
@@ -1548,7 +1548,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(prefixPath.toString());
 					}
 				};
@@ -1606,7 +1606,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return path.toString().startsWith(prefix);
 					}
 				};
@@ -1623,7 +1623,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return path.toString().startsWith(prefix);
 					}
 				};
@@ -1641,7 +1641,7 @@ public class Matchers {
 			public static Matcher startsWith(final String prefix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix _prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix _prefix, Path prefixPath, Path path) {
 						return path.toString().startsWith(prefix);
 					}
 				};
@@ -1683,7 +1683,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().endsWith(suffix);
 					}
 				};
@@ -1700,7 +1700,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().endsWith(suffix);
 					}
 				};
@@ -1718,7 +1718,7 @@ public class Matchers {
 			public static Matcher endsWith(final String suffix, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().endsWith(suffix);
 					}
 				};
@@ -1760,7 +1760,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contains(substring);
 					}
 				};
@@ -1777,7 +1777,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contains(substring);
 					}
 				};
@@ -1795,7 +1795,7 @@ public class Matchers {
 			public static Matcher contains(final CharSequence substring, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contains(substring);
 					}
 				};
@@ -1836,7 +1836,7 @@ public class Matchers {
 			public static Matcher equals(final Path target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.equals(target);
 					}
 				};
@@ -1852,7 +1852,7 @@ public class Matchers {
 			public static Matcher equals(final Path target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.equals(target);
 					}
 				};
@@ -1869,7 +1869,7 @@ public class Matchers {
 			public static Matcher equals(final Path target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.equals(target);
 					}
 				};
@@ -1983,7 +1983,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contentEquals(target);
 					}
 				};
@@ -1999,7 +1999,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contentEquals(target);
 					}
 				};
@@ -2016,7 +2016,7 @@ public class Matchers {
 			public static Matcher equals(final CharSequence target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().contentEquals(target);
 					}
 				};
@@ -2055,7 +2055,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -2072,7 +2072,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -2089,7 +2089,7 @@ public class Matchers {
 			public static Matcher equalsIgnoreCase(final String target, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return path.toString().equalsIgnoreCase(target);
 					}
 				};
@@ -2129,7 +2129,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(path.toString()).matches();
 					}
 				};
@@ -2146,7 +2146,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(path.toString()).matches();
 					}
 				};
@@ -2164,7 +2164,7 @@ public class Matchers {
 			public static Matcher matches(final Pattern pattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return pattern.matcher(path.toString()).matches();
 					}
 				};
@@ -2212,7 +2212,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern) {
 				return new PathMatchMatcher() {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(path.toString());
 					}
 				};
@@ -2232,7 +2232,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules) {
 				return new PathMatchMatcherWithRules(rules) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(path.toString());
 					}
 				};
@@ -2253,7 +2253,7 @@ public class Matchers {
 			public static Matcher matches(final WildcardPatternMatcher wildcardPattern, Iterable<? extends Rule> rules, Iterable<? extends Rule> otherwise) {
 				return new PathMatchMatcherWithRulesAndOtherwise(rules, otherwise) {
 					@Override
-					protected boolean matches(FirewallContext context, HttpServletRequest request, com.aoindustries.net.pathspace.Prefix prefix, Path prefixPath, Path path) {
+					protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
 						return wildcardPattern.isMatch(path.toString());
 					}
 				};
