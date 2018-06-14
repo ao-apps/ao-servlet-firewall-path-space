@@ -67,6 +67,7 @@ public class FirewallComponent {
 		return newInstance(Collections.singleton(prefix), rules);
 	}
 
+	// TODO: Overloads taking String instead of Prefix, to avoid call to Prefix.valueOf
 	public static FirewallComponent newInstance(Prefix prefix, Rule ... rules) {
 		return newInstance(Collections.singleton(prefix), rules);
 	}
