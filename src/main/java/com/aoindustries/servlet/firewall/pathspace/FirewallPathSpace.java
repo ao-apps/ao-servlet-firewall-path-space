@@ -31,6 +31,9 @@ import javax.servlet.ServletContext;
 /**
  * Manages the allocation of the servlet {@link PathSpace path space} to registered
  * {@link FirewallComponent components}, creating per-module sets of firewall rules.
+ * <p>
+ * TODO: Should this be "ao-servlet-firewall-components"?
+ * </p>
  */
 public class FirewallPathSpace {
 
@@ -67,12 +70,31 @@ public class FirewallPathSpace {
 	 * @throws  PrefixConflictException  If the prefix conflicts with an existing entry.
 	 *          TODO: At this time this means the component could be partially registered when it has multiple paths.
 	 */
-	public void add(FirewallComponent component) throws PrefixConflictException {
+	public FirewallPathSpace add(FirewallComponent component) throws PrefixConflictException {
 		for(Prefix prefix : component.getPrefixes()) {
 			pathSpace.put(prefix, component);
 		}
 		// TODO: unregister prefixes added during partial add
+		return this;
 	}
+
+	/**
+	 * Registers any number of new components.
+	 *
+	 * @see  PathSpace#put(com.aoindustries.net.pathspace.Prefix, java.lang.Object)
+	 *
+	 * @throws  PrefixConflictException  If the prefix conflicts with an existing entry.
+	 *          TODO: At this time this means the components could be partially registered when it has multiple paths.
+	 */
+	// TODO: Rename "register" or "allocate" to be more clear this is reserving a space?
+	public FirewallPathSpace add(FirewallComponent ... components) throws PrefixConflictException {
+		for(FirewallComponent component : components) add(component);
+		return this;
+	}
+
+	// TODO: add overloads matching the static factory methods of FirewallComponent?
+	//       Move those factory methods here instead, so there cannot be FirewallComponent in unregistered form?
+	//       Remove varargs method and use method chaining if we go this route.
 
 	// TODO: remove?
 
