@@ -2010,6 +2010,8 @@ public class Rules {
 				}
 			}
 
+			// TODO: Support a "map" instead of just "equals", to avoid sequential lookups when there are a large number of different specific targets.
+
 			/**
 			 * Matches when a request path is equal to a given string, case-sensitive.
 			 *
