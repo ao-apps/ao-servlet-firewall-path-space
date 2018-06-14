@@ -25,11 +25,14 @@ package com.aoindustries.servlet.firewall.pathspace;
 import com.aoindustries.net.Path;
 import com.aoindustries.net.pathspace.PathSpace.PathMatch;
 import com.aoindustries.net.pathspace.Prefix;
+import com.aoindustries.servlet.firewall.api.Action;
 import com.aoindustries.servlet.firewall.api.FirewallContext;
 import com.aoindustries.servlet.firewall.api.Matcher;
 import com.aoindustries.servlet.firewall.api.Matcher.Result;
+import static com.aoindustries.servlet.firewall.api.MatcherUtil.callRules;
 import static com.aoindustries.servlet.firewall.api.MatcherUtil.doMatches;
 import com.aoindustries.servlet.firewall.api.Rule;
+import com.aoindustries.servlet.http.Dispatcher;
 import com.aoindustries.util.WildcardPatternMatcher;
 import com.aoindustries.validation.ValidationException;
 import java.io.IOException;
@@ -49,12 +52,57 @@ public class Rules {
 
 	private Rules() {}
 
-	// TODO: servletSpace
+	// <editor-fold defaultstate="collapsed" desc="pathSpace">
+	/**
+	 * @see  FirewallPathSpace
+	 */
+	public static class pathSpace {
+
+		private pathSpace() {}
+
+		/**
+		 * Locates any registered {@link FirewallComponent} and invokes its
+		 * {@link FirewallComponent#getRules() set of firewall rules}.
+		 * <p>
+		 * TODO: Define how servlet path is determined.  Especially regarding include/forward and pathInfo.
+		 * </p>
+		 * @implNote  Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_REQUEST_KEY}
+		 *            before invoking the component rules.  Restores its previous value when done.
+		 *
+		 * @return  {@link Matcher.Result#TERMINATE} when component found and it performed a terminating {@link Action}.
+		 *          {@link Matcher.Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.
+		 *          {@link Matcher.Result#NO_MATCH} when no component matches the current servlet path.
+		 *
+		 * @see  Dispatcher#getCurrentPagePath(javax.servlet.http.HttpServletRequest)
+		 */
+		public static final Matcher doFirewallComponent = new Matcher() {
+			@Override
+			public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
+				try {
+					// TODO: What to do with pathInfo, forward, include?
+					FirewallPathSpace pathSpace = FirewallPathSpace.getFirewallPathSpace(request.getServletContext());
+					PathMatch<FirewallComponent> match = pathSpace.get(Path.valueOf(Dispatcher.getCurrentPagePath(request)));
+					if(match == null) {
+						return Result.NO_MATCH;
+					} else {
+						final Object oldValue = context.getAttribute(pathMatch.PATH_MATCH_REQUEST_KEY);
+						try {
+							context.setAttribute(pathMatch.PATH_MATCH_REQUEST_KEY, match);
+							return callRules(context, match.getValue().getRulesIterable(), Result.MATCH);
+						} finally {
+							context.setAttribute(pathMatch.PATH_MATCH_REQUEST_KEY, oldValue);
+						}
+					}
+				} catch(ValidationException e) {
+					throw new ServletException(e);
+				}
+			}
+		};
+	}
+	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="pathMatch">
 	/**
-	 * TODO: Move to own package or to path-space or servlet-space package?
-	 *
 	 * @see  PathMatch
 	 */
 	public static class pathMatch {
@@ -71,8 +119,9 @@ public class Rules {
 		 *
 		 * @throws ServletException when no {@link PathMatch} set.
 		 */
-		private static PathMatch<?> getPathMatch(FirewallContext context) throws ServletException {
-			PathMatch<?> pathMatch = (PathMatch<?>)context.getAttribute(PATH_MATCH_REQUEST_KEY);
+		private static PathMatch<FirewallComponent> getPathMatch(FirewallContext context) throws ServletException {
+			@SuppressWarnings("unchecked")
+			PathMatch<FirewallComponent> pathMatch = (PathMatch<FirewallComponent>)context.getAttribute(PATH_MATCH_REQUEST_KEY);
 			if(pathMatch == null) throw new ServletException("PathMatch not set on request");
 			return pathMatch;
 		}
@@ -80,7 +129,7 @@ public class Rules {
 		private abstract static class PathMatchMatcher implements Matcher {
 			@Override
 			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
-				PathMatch<?> pathMatch = getPathMatch(context);
+				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				if(
 					matches(
 						context,
@@ -126,7 +175,7 @@ public class Rules {
 
 			@Override
 			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
-				PathMatch<?> pathMatch = getPathMatch(context);
+				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				return doMatches(
 					matches(
 						context,
@@ -171,7 +220,7 @@ public class Rules {
 
 			@Override
 			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
-				PathMatch<?> pathMatch = getPathMatch(context);
+				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				return doMatches(
 					matches(
 						context,
