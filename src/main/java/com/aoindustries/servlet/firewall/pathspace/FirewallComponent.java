@@ -43,12 +43,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * TODO: Either move this page from semanticcms-core-controller, or link to it from here.
  * </p>
  */
+// TODO: Per-component attributes?
 public class FirewallComponent {
 
 	public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Iterable<? extends Rule> rules) {
-		FirewallComponent space = new FirewallComponent(prefixes);
-		space.append(rules);
-		return space;
+		FirewallComponent component = new FirewallComponent(prefixes);
+		component.append(rules);
+		return component;
 	}
 
 	public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule ... rules) {
@@ -82,7 +83,7 @@ public class FirewallComponent {
 	}
 
 	/**
-	 * Gets an unmodifiable set of prefixes associated with this space.
+	 * Gets an unmodifiable set of prefixes associated with this component.
 	 */
 	public Set<Prefix> getPrefixes() {
 		return prefixes;
@@ -94,7 +95,7 @@ public class FirewallComponent {
 	private final List<Rule> unmodifiableRules = Collections.unmodifiableList(rules);
 
 	/**
-	 * Gets an unmodifiable copy of the rules applied to this path space.
+	 * Gets an unmodifiable copy of the rules applied to this component.
 	 */
 	public List<Rule> getRules() {
 		return unmodifiableRules;
@@ -121,28 +122,28 @@ public class FirewallComponent {
 	}
 
 	/**
-	 * Inserts rules into the beginning of this space.
+	 * Inserts rules into the beginning of this component.
 	 */
 	public void prepend(Iterable<? extends Rule> rules) {
 		this.rules.addAll(0, AoCollections.asCollection(rules));
 	}
 
 	/**
-	 * Inserts rules into the beginning of this space.
+	 * Inserts rules into the beginning of this component.
 	 */
 	public void prepend(Rule ... rules) {
 		prepend(Arrays.asList(rules));
 	}
 
 	/**
-	 * Inserts rules into the end of this space.
+	 * Inserts rules into the end of this component.
 	 */
 	public void append(Iterable<? extends Rule> rules) {
 		this.rules.addAll(AoCollections.asCollection(rules));
 	}
 
 	/**
-	 * Inserts rules into the end of this space.
+	 * Inserts rules into the end of this component.
 	 */
 	public void append(Rule ... rules) {
 		append(Arrays.asList(rules));
