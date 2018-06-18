@@ -23,7 +23,7 @@
 package com.aoindustries.servlet.firewall.pathspace;
 
 import com.aoindustries.net.Path;
-import com.aoindustries.net.pathspace.PathSpace.PathMatch;
+import com.aoindustries.net.pathspace.PathMatch;
 import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.servlet.firewall.api.Action;
 import com.aoindustries.servlet.firewall.api.FirewallContext;

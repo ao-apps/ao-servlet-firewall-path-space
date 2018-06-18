@@ -23,6 +23,7 @@
 package com.aoindustries.servlet.firewall.pathspace;
 
 import com.aoindustries.net.Path;
+import com.aoindustries.net.pathspace.PathMatch;
 import com.aoindustries.net.pathspace.PathSpace;
 import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.net.pathspace.PrefixConflictException;
@@ -103,7 +104,7 @@ public class FirewallPathSpace {
 	 *
 	 * @see  PathSpace#get(com.aoindustries.net.Path)
 	 */
-	public PathSpace.PathMatch<FirewallComponent> get(Path path) {
+	public PathMatch<FirewallComponent> get(Path path) {
 		return pathSpace.get(path);
 	}
 }
