@@ -66,7 +66,7 @@ public class Rules {
 		 * <p>
 		 * TODO: Define how servlet path is determined.  Especially regarding include/forward and pathInfo.
 		 * </p>
-		 * @implNote  Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_REQUEST_KEY}
+		 * @implNote  Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_CONTEXT_KEY}
 		 *            before invoking the component rules.  Restores its previous value when done.
 		 *
 		 * @return  {@link Matcher.Result#TERMINATE} when component found and it performed a terminating {@link Action}.
@@ -85,12 +85,12 @@ public class Rules {
 					if(match == null) {
 						return Result.NO_MATCH;
 					} else {
-						final Object oldValue = context.getAttribute(pathMatch.PATH_MATCH_REQUEST_KEY);
+						final Object oldValue = context.getAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY);
 						try {
-							context.setAttribute(pathMatch.PATH_MATCH_REQUEST_KEY, match);
+							context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, match);
 							return callRules(context, match.getValue().getRulesIterable(), Result.MATCH);
 						} finally {
-							context.setAttribute(pathMatch.PATH_MATCH_REQUEST_KEY, oldValue);
+							context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, oldValue);
 						}
 					}
 				} catch(ValidationException e) {
@@ -110,9 +110,9 @@ public class Rules {
 		private pathMatch() {}
 
 		/**
-		 * The request key that holds the current PathMatch.
+		 * The request key that holds the current {@link PathMatch}.
 		 */
-		private static final String PATH_MATCH_REQUEST_KEY = pathMatch.class.getName();
+		private static final String PATH_MATCH_CONTEXT_KEY = pathMatch.class.getName();
 
 		/**
 		 * Gets the {@link PathMatch} for the current servlet space.
@@ -121,8 +121,8 @@ public class Rules {
 		 */
 		private static PathMatch<FirewallComponent> getPathMatch(FirewallContext context) throws ServletException {
 			@SuppressWarnings("unchecked")
-			PathMatch<FirewallComponent> pathMatch = (PathMatch<FirewallComponent>)context.getAttribute(PATH_MATCH_REQUEST_KEY);
-			if(pathMatch == null) throw new ServletException("PathMatch not set on request");
+			PathMatch<FirewallComponent> pathMatch = (PathMatch<FirewallComponent>)context.getAttribute(PATH_MATCH_CONTEXT_KEY);
+			if(pathMatch == null) throw new ServletException("PathMatch not set on firewall context");
 			return pathMatch;
 		}
 
