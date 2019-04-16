@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
-Copyright (C) 2018  AO Industries, Inc.
+Copyright (C) 2018, 2019  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -62,10 +62,10 @@ along with ao-servlet-firewall-path-space.  If not, see <http://www.gnu.org/lice
 							<links>
 								<link>${javac.link.javaApi}</link>
 								<link>${javac.link.javaeeApi.6}</link>
-								<link>https://aoindustries.com/ao-lang/apidocs</link>
-								<link>https://aoindustries.com/ao-net-path-space/apidocs</link>
-								<link>https://aoindustries.com/ao-servlet-firewall/api/apidocs</link>
-								<link>https://aoindustries.com/aocode-public/apidocs</link>
+								<link>https://aoindustries.com/ao-lang/apidocs/</link>
+								<link>https://aoindustries.com/ao-net-path-space/apidocs/</link>
+								<link>https://aoindustries.com/ao-servlet-firewall/api/apidocs/</link>
+								<link>https://aoindustries.com/aocode-public/apidocs/</link>
 							</links>
 						</configuration>
 					</plugin>
