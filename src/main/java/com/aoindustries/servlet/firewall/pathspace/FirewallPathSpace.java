@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018  AO Industries, Inc.
+ * Copyright (C) 2018, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -28,6 +28,9 @@ import com.aoindustries.net.pathspace.PathSpace;
 import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.net.pathspace.PrefixConflictException;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  * Manages the allocation of the servlet {@link PathSpace path space} to registered
@@ -38,28 +41,35 @@ import javax.servlet.ServletContext;
  */
 public class FirewallPathSpace {
 
-	private static final String APPLICATION_ATTRIBUTE_NAME = FirewallPathSpace.class.getName();
+	@WebListener
+	public static class Initializer implements ServletContextListener {
+		@Override
+		public void contextInitialized(ServletContextEvent event) {
+			getFirewallPathSpace(event.getServletContext());
+		}
+		@Override
+		public void contextDestroyed(ServletContextEvent event) {
+			// Do nothing
+		}
+	}
 
-	private static class InstanceLock extends Object {}
-	private static final InstanceLock instanceLock = new InstanceLock();
+	private static final String APPLICATION_ATTRIBUTE = FirewallPathSpace.class.getName();
 
 	/**
 	 * Gets the {@link FirewallPathSpace} for the given {@link ServletContext},
 	 * creating a new instance if not yet present.
 	 */
 	public static FirewallPathSpace getFirewallPathSpace(ServletContext servletContext) {
-		synchronized(instanceLock) {
-			FirewallPathSpace instance = (FirewallPathSpace)servletContext.getAttribute(APPLICATION_ATTRIBUTE_NAME);
-			if(instance == null) {
-				instance = new FirewallPathSpace();
-				servletContext.setAttribute(APPLICATION_ATTRIBUTE_NAME, instance);
-				// TODO: How do we register this with global rules?
-			}
-			return instance;
+		FirewallPathSpace instance = (FirewallPathSpace)servletContext.getAttribute(APPLICATION_ATTRIBUTE);
+		if(instance == null) {
+			instance = new FirewallPathSpace();
+			servletContext.setAttribute(APPLICATION_ATTRIBUTE, instance);
+			// TODO: How do we register this with global rules?
 		}
+		return instance;
 	}
 
-	private final PathSpace<FirewallComponent> pathSpace = new PathSpace<FirewallComponent>();
+	private final PathSpace<FirewallComponent> pathSpace = new PathSpace<>();
 
 	private FirewallPathSpace() {}
 
