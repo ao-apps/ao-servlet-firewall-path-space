@@ -45,7 +45,7 @@ public class FirewallPathSpace {
 	public static class Initializer implements ServletContextListener {
 		@Override
 		public void contextInitialized(ServletContextEvent event) {
-			getFirewallPathSpace(event.getServletContext());
+			getInstance(event.getServletContext());
 		}
 		@Override
 		public void contextDestroyed(ServletContextEvent event) {
@@ -59,7 +59,7 @@ public class FirewallPathSpace {
 	 * Gets the {@link FirewallPathSpace} for the given {@link ServletContext},
 	 * creating a new instance if not yet present.
 	 */
-	public static FirewallPathSpace getFirewallPathSpace(ServletContext servletContext) {
+	public static FirewallPathSpace getInstance(ServletContext servletContext) {
 		FirewallPathSpace instance = (FirewallPathSpace)servletContext.getAttribute(APPLICATION_ATTRIBUTE);
 		if(instance == null) {
 			instance = new FirewallPathSpace();

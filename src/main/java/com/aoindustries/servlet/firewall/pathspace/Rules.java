@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018  AO Industries, Inc.
+ * Copyright (C) 2018, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -80,7 +80,7 @@ public class Rules {
 			public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
 				try {
 					// TODO: What to do with pathInfo, forward, include?
-					FirewallPathSpace pathSpace = FirewallPathSpace.getFirewallPathSpace(request.getServletContext());
+					FirewallPathSpace pathSpace = FirewallPathSpace.getInstance(request.getServletContext());
 					PathMatch<FirewallComponent> match = pathSpace.get(Path.valueOf(Dispatcher.getCurrentPagePath(request)));
 					if(match == null) {
 						return Result.NO_MATCH;
