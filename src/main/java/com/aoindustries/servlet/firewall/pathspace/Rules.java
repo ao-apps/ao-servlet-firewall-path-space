@@ -24,6 +24,7 @@ package com.aoindustries.servlet.firewall.pathspace;
 
 import com.aoindustries.net.Path;
 import com.aoindustries.net.pathspace.PathMatch;
+import com.aoindustries.net.pathspace.PathSpace;
 import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.servlet.firewall.api.Action;
 import com.aoindustries.servlet.firewall.api.FirewallContext;
@@ -43,10 +44,12 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * A set of {@link Matcher} and {@link Action} implementations for {@link PathSpace} and {@link PathMatch}.
- *
- * @implNote  This is admittedly overload-heavy.  We are paying the price here in order to have the absolutely
- *            cleanest possible rule definitions.  Perhaps a future version of Java will introduce optional parameters
- *            and this can be cleaned-up some.
+ * <p>
+ * <b>Implementation Note:</b><br />
+ * This is admittedly overload-heavy.  We are paying the price here in order to have the absolutely
+ * cleanest possible rule definitions.  Perhaps a future version of Java will introduce optional parameters
+ * and this can be cleaned-up some.
+ * </p>
  */
 public class Rules {
 
@@ -66,12 +69,17 @@ public class Rules {
 		 * <p>
 		 * TODO: Define how servlet path is determined.  Especially regarding include/forward and pathInfo.
 		 * </p>
-		 * @implNote  Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_CONTEXT_KEY}
-		 *            before invoking the component rules.  Restores its previous value when done.
-		 *
-		 * @return  {@link Matcher.Result#TERMINATE} when component found and it performed a terminating {@link Action}.
-		 *          {@link Matcher.Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.
-		 *          {@link Matcher.Result#NO_MATCH} when no component matches the current servlet path.
+		 * <p>
+		 * <b>Implementation Note:</b><br />
+		 * Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_CONTEXT_KEY}
+		 * before invoking the component rules.  Restores its previous value when done.
+		 * </p>
+		 * <p>
+		 * <b>Returns:</b><br />
+		 * {@link Result#TERMINATE} when component found and it performed a terminating {@link Action}.<br />
+		 * {@link Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.<br />
+		 * {@link Result#NO_MATCH} when no component matches the current servlet path.
+		 * </p>
 		 *
 		 * @see  Dispatcher#getCurrentPagePath(javax.servlet.http.HttpServletRequest)
 		 */
@@ -2118,7 +2126,6 @@ public class Rules {
 			 * Matches when a request path is equal to a given string, case-insensitive.
 			 *
 			 * @param  rules  Invoked only when matched.
-			 * @param  otherwise  Invoked only when not matched.
 			 *
 			 * @see  String#equalsIgnoreCase(java.lang.String)
 			 */

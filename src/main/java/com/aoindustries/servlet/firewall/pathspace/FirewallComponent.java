@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018  AO Industries, Inc.
+ * Copyright (C) 2018, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -114,8 +114,10 @@ public class FirewallComponent {
 
 	/**
 	 * Gets an unmodifiable iterator to the rules.
-	 *
-	 * @implNote  Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
+	 * <p>
+	 * <b>Implementation Note:</b><br />
+	 * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
+	 * </p>
 	 */
 	public Iterable<Rule> getRulesIterable() {
 		return rulesIter;
