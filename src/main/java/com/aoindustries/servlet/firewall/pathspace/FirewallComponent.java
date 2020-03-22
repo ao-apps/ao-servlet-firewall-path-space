@@ -75,7 +75,7 @@ public class FirewallComponent {
 
 	private final Set<Prefix> prefixes;
 
-	private final List<Rule> rules = new CopyOnWriteArrayList<Rule>();
+	private final List<Rule> rules = new CopyOnWriteArrayList<>();
 
 	private FirewallComponent(Iterable<? extends Prefix> prefixes) {
 		this.prefixes = AoCollections.unmodifiableCopySet(prefixes);
