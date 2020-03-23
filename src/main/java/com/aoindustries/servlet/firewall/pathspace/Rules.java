@@ -83,27 +83,24 @@ public class Rules {
 		 *
 		 * @see  Dispatcher#getCurrentPagePath(javax.servlet.http.HttpServletRequest)
 		 */
-		public static final Matcher doFirewallComponent = new Matcher() {
-			@Override
-			public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
-				try {
-					// TODO: What to do with pathInfo, forward, include?
-					FirewallPathSpace pathSpace = FirewallPathSpace.getInstance(request.getServletContext());
-					PathMatch<FirewallComponent> match = pathSpace.get(Path.valueOf(Dispatcher.getCurrentPagePath(request)));
-					if(match == null) {
-						return Result.NO_MATCH;
-					} else {
-						final Object oldValue = context.getAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY);
-						try {
-							context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, match);
-							return callRules(context, match.getValue().getRulesIterable(), Result.MATCH);
-						} finally {
-							context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, oldValue);
-						}
+		public static final Matcher doFirewallComponent = (context, request) -> {
+			try {
+				// TODO: What to do with pathInfo, forward, include?
+				FirewallPathSpace pathSpace = FirewallPathSpace.getInstance(request.getServletContext());
+				PathMatch<FirewallComponent> match = pathSpace.get(Path.valueOf(Dispatcher.getCurrentPagePath(request)));
+				if(match == null) {
+					return Result.NO_MATCH;
+				} else {
+					final Object oldValue = context.getAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY);
+					try {
+						context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, match);
+						return callRules(context, match.getValue().getRulesIterable(), Result.MATCH);
+					} finally {
+						context.setAttribute(pathMatch.PATH_MATCH_CONTEXT_KEY, oldValue);
 					}
-				} catch(ValidationException e) {
-					throw new ServletException(e);
 				}
+			} catch(ValidationException e) {
+				throw new ServletException(e);
 			}
 		};
 	}
