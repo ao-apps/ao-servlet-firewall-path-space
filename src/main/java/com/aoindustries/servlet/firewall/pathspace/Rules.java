@@ -45,7 +45,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * A set of {@link Matcher} and {@link Action} implementations for {@link PathSpace} and {@link PathMatch}.
  * <p>
- * <b>Implementation Note:</b><br />
+ * <b>Implementation Note:</b><br>
  * This is admittedly overload-heavy.  We are paying the price here in order to have the absolutely
  * cleanest possible rule definitions.  Perhaps a future version of Java will introduce optional parameters
  * and this can be cleaned-up some.
@@ -70,14 +70,14 @@ public class Rules {
 		 * TODO: Define how servlet path is determined.  Especially regarding include/forward and pathInfo.
 		 * </p>
 		 * <p>
-		 * <b>Implementation Note:</b><br />
+		 * <b>Implementation Note:</b><br>
 		 * Sets the {@link FirewallContext} attribute {@link pathMatch#PATH_MATCH_CONTEXT_KEY}
 		 * before invoking the component rules.  Restores its previous value when done.
 		 * </p>
 		 * <p>
-		 * <b>Returns:</b><br />
-		 * {@link Result#TERMINATE} when component found and it performed a terminating {@link Action}.<br />
-		 * {@link Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.<br />
+		 * <b>Returns:</b><br>
+		 * {@link Result#TERMINATE} when component found and it performed a terminating {@link Action}.<br>
+		 * {@link Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.<br>
 		 * {@link Result#NO_MATCH} when no component matches the current servlet path.
 		 * </p>
 		 *

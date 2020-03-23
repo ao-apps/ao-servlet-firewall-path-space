@@ -109,7 +109,7 @@ public class FirewallComponent {
 	/**
 	 * Gets an unmodifiable iterator to the rules.
 	 * <p>
-	 * <b>Implementation Note:</b><br />
+	 * <b>Implementation Note:</b><br>
 	 * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
 	 * </p>
 	 */
