@@ -30,7 +30,7 @@ Path space for servlet-based application request filtering.
 * [Project Home](https://aoindustries.com/ao-servlet-firewall/path-space/)
 * [Changelog](https://aoindustries.com/ao-servlet-firewall/path-space/changelog)
 * [API Docs](https://aoindustries.com/ao-servlet-firewall/path-space/apidocs/)
-* [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.aoindustries%22%20AND%20a:%22ao-servlet-firewall-path-space%22)
+* [Maven Central Repository](https://search.maven.org/artifact/com.aoindustries/ao-servlet-firewall-path-space)
 * [GitHub](https://github.com/aoindustries/ao-servlet-firewall-path-space)
 
 ## Features
