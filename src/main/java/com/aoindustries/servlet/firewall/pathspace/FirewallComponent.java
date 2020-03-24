@@ -22,10 +22,10 @@
  */
 package com.aoindustries.servlet.firewall.pathspace;
 
+import com.aoindustries.collections.AoCollections;
 import com.aoindustries.net.pathspace.PathSpace;
 import com.aoindustries.net.pathspace.Prefix;
 import com.aoindustries.servlet.firewall.api.Rule;
-import com.aoindustries.util.AoCollections;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
