@@ -84,6 +84,7 @@ public class FirewallComponent {
 	/**
 	 * Gets an unmodifiable set of prefixes associated with this component.
 	 */
+	@SuppressWarnings("ReturnOfCollectionOrArrayField") // Returning unmodifiable
 	public Set<Prefix> getPrefixes() {
 		return prefixes;
 	}

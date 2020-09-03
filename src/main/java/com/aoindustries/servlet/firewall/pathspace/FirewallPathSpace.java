@@ -99,7 +99,9 @@ public class FirewallPathSpace {
 	 */
 	// TODO: Rename "register" or "allocate" to be more clear this is reserving a space?
 	public FirewallPathSpace add(FirewallComponent ... components) throws PrefixConflictException {
-		for(FirewallComponent component : components) add(component);
+		for(FirewallComponent component : components) {
+			add(component);
+		}
 		return this;
 	}
 
