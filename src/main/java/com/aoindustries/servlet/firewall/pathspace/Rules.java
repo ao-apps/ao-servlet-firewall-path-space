@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -851,7 +851,7 @@ public class Rules {
 			 * especially in suffix matching.
 			 * </p>
 			 * <p>
-			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger aocode-public project.
+			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger ao-hodgepodge project.
 			 * </p>
 			 *
 			 * @see  WildcardPatternMatcher#compile(java.lang.String)
@@ -1555,7 +1555,7 @@ public class Rules {
 			 * especially in suffix matching.
 			 * </p>
 			 * <p>
-			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger aocode-public project.
+			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger ao-hodgepodge project.
 			 * </p>
 			 *
 			 * @see  WildcardPatternMatcher#compile(java.lang.String)
@@ -2261,7 +2261,7 @@ public class Rules {
 			 * especially in suffix matching.
 			 * </p>
 			 * <p>
-			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger aocode-public project.
+			 * TODO: Move {@link WildcardPatternMatcher} to own microproject and remove dependency on larger ao-hodgepodge project.
 			 * </p>
 			 *
 			 * @see  WildcardPatternMatcher#compile(java.lang.String)
