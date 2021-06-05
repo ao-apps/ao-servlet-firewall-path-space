@@ -20,22 +20,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-servlet-firewall-path-space.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.servlet.firewall.pathspace;
+package com.aoapps.servlet.firewall.pathspace;
 
-import com.aoindustries.net.Path;
-import com.aoindustries.net.pathspace.PathMatch;
-import com.aoindustries.net.pathspace.PathSpace;
-import com.aoindustries.net.pathspace.Prefix;
-import com.aoindustries.servlet.firewall.api.Action;
-import com.aoindustries.servlet.firewall.api.FirewallContext;
-import com.aoindustries.servlet.firewall.api.Matcher;
-import com.aoindustries.servlet.firewall.api.Matcher.Result;
-import static com.aoindustries.servlet.firewall.api.MatcherUtil.callRules;
-import static com.aoindustries.servlet.firewall.api.MatcherUtil.doMatches;
-import com.aoindustries.servlet.firewall.api.Rule;
-import com.aoindustries.servlet.http.Dispatcher;
-import com.aoindustries.util.WildcardPatternMatcher;
-import com.aoindustries.validation.ValidationException;
+import com.aoapps.hodgepodge.util.WildcardPatternMatcher;
+import com.aoapps.lang.validation.ValidationException;
+import com.aoapps.net.Path;
+import com.aoapps.net.pathspace.PathMatch;
+import com.aoapps.net.pathspace.PathSpace;
+import com.aoapps.net.pathspace.Prefix;
+import com.aoapps.servlet.firewall.api.Action;
+import com.aoapps.servlet.firewall.api.FirewallContext;
+import com.aoapps.servlet.firewall.api.Matcher;
+import com.aoapps.servlet.firewall.api.Matcher.Result;
+import static com.aoapps.servlet.firewall.api.MatcherUtil.callRules;
+import static com.aoapps.servlet.firewall.api.MatcherUtil.doMatches;
+import com.aoapps.servlet.firewall.api.Rule;
+import com.aoapps.servlet.http.Dispatcher;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -155,7 +155,7 @@ public class Rules {
 			 * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
 			 * @param  path  See {@link PathMatch#getPath()}
 			 *
-			 * @see  #perform(com.aoindustries.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
+			 * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
 			abstract protected boolean matches(
 				FirewallContext context,
@@ -199,7 +199,7 @@ public class Rules {
 			 * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
 			 * @param  path  See {@link PathMatch#getPath()}
 			 *
-			 * @see  #perform(com.aoindustries.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)
+			 * @see  #perform(com.aoapps.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
 			abstract protected boolean matches(				FirewallContext context,
 				HttpServletRequest request,
@@ -245,7 +245,7 @@ public class Rules {
 			 * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
 			 * @param  path  See {@link PathMatch#getPath()}
 			 *
-			 * @see  #perform(com.aoindustries.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
+			 * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
 			abstract protected boolean matches(
 				FirewallContext context,

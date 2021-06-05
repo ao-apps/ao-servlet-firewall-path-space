@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -20,12 +20,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-servlet-firewall-path-space.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.servlet.firewall.pathspace;
+package com.aoapps.servlet.firewall.pathspace;
 
-import com.aoindustries.collections.AoCollections;
-import com.aoindustries.net.pathspace.PathSpace;
-import com.aoindustries.net.pathspace.Prefix;
-import com.aoindustries.servlet.firewall.api.Rule;
+import com.aoapps.collections.AoCollections;
+import com.aoapps.net.pathspace.PathSpace;
+import com.aoapps.net.pathspace.Prefix;
+import com.aoapps.servlet.firewall.api.Rule;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
