@@ -10,6 +10,12 @@
 
 [![Build](https://github.com/aoindustries/ao-servlet-firewall-path-space/workflows/Build/badge.svg?branch=master)](https://github.com/aoindustries/ao-servlet-firewall-path-space/actions?query=workflow%3ABuild)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.aoapps/ao-servlet-firewall-path-space/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.aoapps/ao-servlet-firewall-path-space)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=alert_status)](https://sonarcloud.io/dashboard?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=ncloc)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space&metric=ncloc)  
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=reliability_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space&metric=Reliability)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=security_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space&metric=Security)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=sqale_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space&metric=Maintainability)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-servlet-firewall-path-space&metric=coverage)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-servlet-firewall-path-space&metric=Coverage)
 
 Path space for servlet-based application request filtering.
 
