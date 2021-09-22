@@ -25,7 +25,7 @@ along with ao-servlet-firewall-path-space.  If not, see <http://www.gnu.org/lice
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.17.2-SNAPSHOT</version>
+		<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.17.2-POST-SNAPSHOT</version>
 		<relativePath>../../parent/pom.xml</relativePath>
 	</parent>
 
@@ -231,7 +231,7 @@ along with ao-servlet-firewall-path-space.  If not, see <http://www.gnu.org/lice
 				<groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId><version>5.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId><version>5.0.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+				<groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId><version>5.0.1${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-net-path-space</artifactId><version>0.1.0${POST-SNAPSHOT}</version>
