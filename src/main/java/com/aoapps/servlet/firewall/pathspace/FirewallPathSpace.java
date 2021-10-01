@@ -27,6 +27,7 @@ import com.aoapps.net.pathspace.PathMatch;
 import com.aoapps.net.pathspace.PathSpace;
 import com.aoapps.net.pathspace.Prefix;
 import com.aoapps.net.pathspace.PrefixConflictException;
+import com.aoapps.servlet.attribute.ScopeEE;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -53,20 +54,19 @@ public class FirewallPathSpace {
 		}
 	}
 
-	private static final String APPLICATION_ATTRIBUTE = FirewallPathSpace.class.getName();
+	private static final ScopeEE.Application.Attribute<FirewallPathSpace> APPLICATION_ATTRIBUTE =
+		ScopeEE.APPLICATION.attribute(FirewallPathSpace.class.getName());
 
 	/**
 	 * Gets the {@link FirewallPathSpace} for the given {@link ServletContext},
 	 * creating a new instance if not yet present.
 	 */
 	public static FirewallPathSpace getInstance(ServletContext servletContext) {
-		FirewallPathSpace instance = (FirewallPathSpace)servletContext.getAttribute(APPLICATION_ATTRIBUTE);
-		if(instance == null) {
-			instance = new FirewallPathSpace();
-			servletContext.setAttribute(APPLICATION_ATTRIBUTE, instance);
+		return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> {
+			FirewallPathSpace instance = new FirewallPathSpace();
 			// TODO: How do we register this with global rules?
-		}
-		return instance;
+			return instance;
+		});
 	}
 
 	private final PathSpace<FirewallComponent> pathSpace = new PathSpace<>();

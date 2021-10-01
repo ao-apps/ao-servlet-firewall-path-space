@@ -115,8 +115,9 @@ public class Rules {
 		private pathMatch() {}
 
 		/**
-		 * The request key that holds the current {@link PathMatch}.
+		 * The firewall context key that holds the current {@link PathMatch}.
 		 */
+		// TODO: Make a FirewallScope that extends Scope, much like Scope.Request and Scope.REQUEST
 		private static final String PATH_MATCH_CONTEXT_KEY = pathMatch.class.getName();
 
 		/**
