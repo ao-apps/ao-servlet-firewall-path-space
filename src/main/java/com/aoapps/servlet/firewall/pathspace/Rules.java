@@ -134,7 +134,7 @@ public class Rules {
 
 		private abstract static class PathMatchMatcher implements Matcher {
 			@Override
-			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
+			public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
 				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				if(
 					matches(
@@ -158,7 +158,7 @@ public class Rules {
 			 *
 			 * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
-			abstract protected boolean matches(
+			protected abstract boolean matches(
 				FirewallContext context,
 				HttpServletRequest request,
 				Prefix prefix,
@@ -180,7 +180,7 @@ public class Rules {
 			//}
 
 			@Override
-			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
+			public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
 				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				return doMatches(
 					matches(
@@ -202,7 +202,7 @@ public class Rules {
 			 *
 			 * @see  #perform(com.aoapps.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
-			abstract protected boolean matches(				FirewallContext context,
+			protected abstract boolean matches(				FirewallContext context,
 				HttpServletRequest request,
 				Prefix prefix,
 				Path prefixPath,
@@ -225,7 +225,7 @@ public class Rules {
 			//}
 
 			@Override
-			final public Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
+			public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
 				PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
 				return doMatches(
 					matches(
@@ -248,7 +248,7 @@ public class Rules {
 			 *
 			 * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
 			 */
-			abstract protected boolean matches(
+			protected abstract boolean matches(
 				FirewallContext context,
 				HttpServletRequest request,
 				Prefix prefix,
