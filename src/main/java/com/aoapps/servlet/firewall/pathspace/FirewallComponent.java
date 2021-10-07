@@ -105,7 +105,7 @@ public class FirewallComponent {
 	 * A small wrapper to prevent casting back to underlying list from the object
 	 * returned from {@link #getRulesIterable()}.
 	 */
-	private final Iterable<Rule> rulesIter = () -> rules.iterator();
+	private final Iterable<Rule> rulesIter = rules::iterator;
 
 	/**
 	 * Gets an unmodifiable iterator to the rules.
