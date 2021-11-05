@@ -51,17 +51,19 @@ import javax.servlet.http.HttpServletRequest;
  * and this can be cleaned-up some.
  * </p>
  */
-public class Rules {
+public abstract class Rules {
 
-	private Rules() {}
+	/** Make no instances. */
+	private Rules() {throw new AssertionError();}
 
 	// <editor-fold defaultstate="collapsed" desc="pathSpace">
 	/**
 	 * @see  FirewallPathSpace
 	 */
-	public static class pathSpace {
+	public abstract static class pathSpace {
 
-		private pathSpace() {}
+		/** Make no instances. */
+		private pathSpace() {throw new AssertionError();}
 
 		/**
 		 * Locates any registered {@link FirewallComponent} and invokes its
@@ -110,9 +112,10 @@ public class Rules {
 	/**
 	 * @see  PathMatch
 	 */
-	public static class pathMatch {
+	public abstract static class pathMatch {
 
-		private pathMatch() {}
+		/** Make no instances. */
+		private pathMatch() {throw new AssertionError();}
 
 		/**
 		 * The firewall context key that holds the current {@link PathMatch}.
@@ -261,9 +264,10 @@ public class Rules {
 		/**
 		 * @see  PathMatch#getPrefix()
 		 */
-		public static class prefix {
+		public abstract static class prefix {
 
-			private prefix() {}
+			/** Make no instances. */
+			private prefix() {throw new AssertionError();}
 
 			/**
 			 * Matches when a request prefix starts with a given string, case-sensitive.
@@ -946,9 +950,10 @@ public class Rules {
 		/**
 		 * @see  PathMatch#getPrefixPath()
 		 */
-		public static class prefixPath {
+		public abstract static class prefixPath {
 
-			private prefixPath() {}
+			/** Make no instances. */
+			private prefixPath() {throw new AssertionError();}
 
 			/**
 			 * Matches when a request prefix path starts with a given string, case-sensitive.
@@ -1650,9 +1655,10 @@ public class Rules {
 		/**
 		 * @see  PathMatch#getPath()
 		 */
-		public static class path {
+		public abstract static class path {
 
-			private path() {}
+			/** Make no instances. */
+			private path() {throw new AssertionError();}
 
 			/**
 			 * Matches when a request path starts with a given string, case-sensitive.

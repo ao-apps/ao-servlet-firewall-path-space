@@ -40,7 +40,7 @@ import javax.servlet.annotation.WebListener;
  * TODO: Should this be "ao-servlet-firewall-components"?
  * </p>
  */
-public class FirewallPathSpace {
+public final class FirewallPathSpace {
 
 	@WebListener
 	public static class Initializer implements ServletContextListener {
@@ -71,7 +71,9 @@ public class FirewallPathSpace {
 
 	private final PathSpace<FirewallComponent> pathSpace = new PathSpace<>();
 
-	private FirewallPathSpace() {}
+	private FirewallPathSpace() {
+		// Do nothing
+	}
 
 	/**
 	 * Registers a new component.
