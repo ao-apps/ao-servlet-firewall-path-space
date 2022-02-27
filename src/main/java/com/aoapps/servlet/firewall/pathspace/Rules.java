@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020, 2021  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021, 2022  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -51,7 +51,7 @@ import javax.servlet.http.HttpServletRequest;
  * and this can be cleaned-up some.
  * </p>
  */
-public abstract class Rules {
+public final class Rules {
 
 	/** Make no instances. */
 	private Rules() {throw new AssertionError();}
@@ -60,7 +60,7 @@ public abstract class Rules {
 	/**
 	 * @see  FirewallPathSpace
 	 */
-	public abstract static class pathSpace {
+	public final static class pathSpace {
 
 		/** Make no instances. */
 		private pathSpace() {throw new AssertionError();}
@@ -112,7 +112,7 @@ public abstract class Rules {
 	/**
 	 * @see  PathMatch
 	 */
-	public abstract static class pathMatch {
+	public final static class pathMatch {
 
 		/** Make no instances. */
 		private pathMatch() {throw new AssertionError();}
@@ -264,7 +264,7 @@ public abstract class Rules {
 		/**
 		 * @see  PathMatch#getPrefix()
 		 */
-		public abstract static class prefix {
+		public final static class prefix {
 
 			/** Make no instances. */
 			private prefix() {throw new AssertionError();}
@@ -950,7 +950,7 @@ public abstract class Rules {
 		/**
 		 * @see  PathMatch#getPrefixPath()
 		 */
-		public abstract static class prefixPath {
+		public final static class prefixPath {
 
 			/** Make no instances. */
 			private prefixPath() {throw new AssertionError();}
@@ -1655,7 +1655,7 @@ public abstract class Rules {
 		/**
 		 * @see  PathMatch#getPath()
 		 */
-		public abstract static class path {
+		public final static class path {
 
 			/** Make no instances. */
 			private path() {throw new AssertionError();}
