@@ -60,7 +60,7 @@ public final class Rules {
 	/**
 	 * @see  FirewallPathSpace
 	 */
-	public final static class pathSpace {
+	public static final class pathSpace {
 
 		/** Make no instances. */
 		private pathSpace() {throw new AssertionError();}
@@ -112,7 +112,7 @@ public final class Rules {
 	/**
 	 * @see  PathMatch
 	 */
-	public final static class pathMatch {
+	public static final class pathMatch {
 
 		/** Make no instances. */
 		private pathMatch() {throw new AssertionError();}
@@ -264,7 +264,7 @@ public final class Rules {
 		/**
 		 * @see  PathMatch#getPrefix()
 		 */
-		public final static class prefix {
+		public static final class prefix {
 
 			/** Make no instances. */
 			private prefix() {throw new AssertionError();}
@@ -950,7 +950,7 @@ public final class Rules {
 		/**
 		 * @see  PathMatch#getPrefixPath()
 		 */
-		public final static class prefixPath {
+		public static final class prefixPath {
 
 			/** Make no instances. */
 			private prefixPath() {throw new AssertionError();}
@@ -1655,7 +1655,7 @@ public final class Rules {
 		/**
 		 * @see  PathMatch#getPath()
 		 */
-		public final static class path {
+		public static final class path {
 
 			/** Make no instances. */
 			private path() {throw new AssertionError();}
