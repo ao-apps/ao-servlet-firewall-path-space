@@ -46,104 +46,106 @@ import java.util.concurrent.CopyOnWriteArrayList;
 // TODO: Per-component attributes?
 public class FirewallComponent {
 
-	public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Iterable<? extends Rule> rules) {
-		FirewallComponent component = new FirewallComponent(prefixes);
-		component.append(rules);
-		return component;
-	}
+  public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Iterable<? extends Rule> rules) {
+    FirewallComponent component = new FirewallComponent(prefixes);
+    component.append(rules);
+    return component;
+  }
 
-	public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule ... rules) {
-		return newInstance(prefixes, Arrays.asList(rules));
-	}
+  public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule ... rules) {
+    return newInstance(prefixes, Arrays.asList(rules));
+  }
 
-	public static FirewallComponent newInstance(Prefix[] prefixes, Iterable<? extends Rule> rules) {
-		return newInstance(Arrays.asList(prefixes), rules);
-	}
+  public static FirewallComponent newInstance(Prefix[] prefixes, Iterable<? extends Rule> rules) {
+    return newInstance(Arrays.asList(prefixes), rules);
+  }
 
-	public static FirewallComponent newInstance(Prefix[] prefixes, Rule ... rules) {
-		return newInstance(Arrays.asList(prefixes), rules);
-	}
+  public static FirewallComponent newInstance(Prefix[] prefixes, Rule ... rules) {
+    return newInstance(Arrays.asList(prefixes), rules);
+  }
 
-	public static FirewallComponent newInstance(Prefix prefix, Iterable<? extends Rule> rules) {
-		return newInstance(Collections.singleton(prefix), rules);
-	}
+  public static FirewallComponent newInstance(Prefix prefix, Iterable<? extends Rule> rules) {
+    return newInstance(Collections.singleton(prefix), rules);
+  }
 
-	// TODO: Overloads taking String instead of Prefix, to avoid call to Prefix.valueOf
-	public static FirewallComponent newInstance(Prefix prefix, Rule ... rules) {
-		return newInstance(Collections.singleton(prefix), rules);
-	}
+  // TODO: Overloads taking String instead of Prefix, to avoid call to Prefix.valueOf
+  public static FirewallComponent newInstance(Prefix prefix, Rule ... rules) {
+    return newInstance(Collections.singleton(prefix), rules);
+  }
 
-	private final Set<Prefix> prefixes;
+  private final Set<Prefix> prefixes;
 
-	private final List<Rule> rules = new CopyOnWriteArrayList<>();
+  private final List<Rule> rules = new CopyOnWriteArrayList<>();
 
-	private FirewallComponent(Iterable<? extends Prefix> prefixes) {
-		this.prefixes = AoCollections.unmodifiableCopySet(prefixes);
-		if(this.prefixes.isEmpty()) throw new IllegalArgumentException("prefixes is empty");
-	}
+  private FirewallComponent(Iterable<? extends Prefix> prefixes) {
+    this.prefixes = AoCollections.unmodifiableCopySet(prefixes);
+    if (this.prefixes.isEmpty()) {
+      throw new IllegalArgumentException("prefixes is empty");
+    }
+  }
 
-	/**
-	 * Gets an unmodifiable set of prefixes associated with this component.
-	 */
-	@SuppressWarnings("ReturnOfCollectionOrArrayField") // Returning unmodifiable
-	public Set<Prefix> getPrefixes() {
-		return prefixes;
-	}
+  /**
+   * Gets an unmodifiable set of prefixes associated with this component.
+   */
+  @SuppressWarnings("ReturnOfCollectionOrArrayField") // Returning unmodifiable
+  public Set<Prefix> getPrefixes() {
+    return prefixes;
+  }
 
-	/**
-	 * An unmodifiable wrapper around rules for {@link #getRules()}.
-	 */
-	private final List<Rule> unmodifiableRules = Collections.unmodifiableList(rules);
+  /**
+   * An unmodifiable wrapper around rules for {@link #getRules()}.
+   */
+  private final List<Rule> unmodifiableRules = Collections.unmodifiableList(rules);
 
-	/**
-	 * Gets an unmodifiable copy of the rules applied to this component.
-	 */
-	public List<Rule> getRules() {
-		return unmodifiableRules;
-	}
+  /**
+   * Gets an unmodifiable copy of the rules applied to this component.
+   */
+  public List<Rule> getRules() {
+    return unmodifiableRules;
+  }
 
-	/**
-	 * A small wrapper to prevent casting back to underlying list from the object
-	 * returned from {@link #getRulesIterable()}.
-	 */
-	private final Iterable<Rule> rulesIter = rules::iterator;
+  /**
+   * A small wrapper to prevent casting back to underlying list from the object
+   * returned from {@link #getRulesIterable()}.
+   */
+  private final Iterable<Rule> rulesIter = rules::iterator;
 
-	/**
-	 * Gets an unmodifiable iterator to the rules.
-	 * <p>
-	 * <b>Implementation Note:</b><br>
-	 * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
-	 * </p>
-	 */
-	public Iterable<Rule> getRulesIterable() {
-		return rulesIter;
-	}
+  /**
+   * Gets an unmodifiable iterator to the rules.
+   * <p>
+   * <b>Implementation Note:</b><br>
+   * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
+   * </p>
+   */
+  public Iterable<Rule> getRulesIterable() {
+    return rulesIter;
+  }
 
-	/**
-	 * Inserts rules into the beginning of this component.
-	 */
-	public void prepend(Iterable<? extends Rule> rules) {
-		this.rules.addAll(0, AoCollections.asCollection(rules));
-	}
+  /**
+   * Inserts rules into the beginning of this component.
+   */
+  public void prepend(Iterable<? extends Rule> rules) {
+    this.rules.addAll(0, AoCollections.asCollection(rules));
+  }
 
-	/**
-	 * Inserts rules into the beginning of this component.
-	 */
-	public void prepend(Rule ... rules) {
-		prepend(Arrays.asList(rules));
-	}
+  /**
+   * Inserts rules into the beginning of this component.
+   */
+  public void prepend(Rule ... rules) {
+    prepend(Arrays.asList(rules));
+  }
 
-	/**
-	 * Inserts rules into the end of this component.
-	 */
-	public void append(Iterable<? extends Rule> rules) {
-		this.rules.addAll(AoCollections.asCollection(rules));
-	}
+  /**
+   * Inserts rules into the end of this component.
+   */
+  public void append(Iterable<? extends Rule> rules) {
+    this.rules.addAll(AoCollections.asCollection(rules));
+  }
 
-	/**
-	 * Inserts rules into the end of this component.
-	 */
-	public void append(Rule ... rules) {
-		append(Arrays.asList(rules));
-	}
+  /**
+   * Inserts rules into the end of this component.
+   */
+  public void append(Rule ... rules) {
+    append(Arrays.asList(rules));
+  }
 }
