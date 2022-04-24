@@ -49,6 +49,7 @@ public final class FirewallPathSpace {
     public void contextInitialized(ServletContextEvent event) {
       getInstance(event.getServletContext());
     }
+
     @Override
     public void contextDestroyed(ServletContextEvent event) {
       // Do nothing
@@ -56,7 +57,7 @@ public final class FirewallPathSpace {
   }
 
   private static final ScopeEE.Application.Attribute<FirewallPathSpace> APPLICATION_ATTRIBUTE =
-    ScopeEE.APPLICATION.attribute(FirewallPathSpace.class.getName());
+      ScopeEE.APPLICATION.attribute(FirewallPathSpace.class.getName());
 
   /**
    * Gets the {@link FirewallPathSpace} for the given {@link ServletContext},

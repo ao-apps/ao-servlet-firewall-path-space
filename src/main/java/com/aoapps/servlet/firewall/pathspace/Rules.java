@@ -111,6 +111,7 @@ public final class Rules {
       }
     };
   }
+
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc="pathMatch">
@@ -137,7 +138,7 @@ public final class Rules {
      */
     private static PathMatch<FirewallComponent> getPathMatch(FirewallContext context) throws ServletException {
       @SuppressWarnings("unchecked")
-      PathMatch<FirewallComponent> pathMatch = (PathMatch<FirewallComponent>)context.getAttribute(PATH_MATCH_CONTEXT_KEY);
+      PathMatch<FirewallComponent> pathMatch = (PathMatch<FirewallComponent>) context.getAttribute(PATH_MATCH_CONTEXT_KEY);
       if (pathMatch == null) {
         throw new ServletException("PathMatch not set on firewall context");
       }
@@ -149,13 +150,13 @@ public final class Rules {
       public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
         PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
         if (
-          matches(
-            context,
-            request,
-            pathMatch.getPrefix(),
-            pathMatch.getPrefixPath(),
-            pathMatch.getPath()
-          )
+            matches(
+                context,
+                request,
+                pathMatch.getPrefix(),
+                pathMatch.getPrefixPath(),
+                pathMatch.getPath()
+            )
         ) {
           return Result.MATCH;
         } else {
@@ -171,11 +172,11 @@ public final class Rules {
        * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
        */
       protected abstract boolean matches(
-        FirewallContext context,
-        HttpServletRequest request,
-        Prefix prefix,
-        Path prefixPath,
-        Path path
+          FirewallContext context,
+          HttpServletRequest request,
+          Prefix prefix,
+          Path prefixPath,
+          Path path
       ) throws IOException, ServletException;
     }
 
@@ -195,15 +196,15 @@ public final class Rules {
       public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
         PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
         return doMatches(
-          matches(
+            matches(
+                context,
+                request,
+                pathMatch.getPrefix(),
+                pathMatch.getPrefixPath(),
+                pathMatch.getPath()
+            ),
             context,
-            request,
-            pathMatch.getPrefix(),
-            pathMatch.getPrefixPath(),
-            pathMatch.getPath()
-          ),
-          context,
-          rules
+            rules
         );
       }
 
@@ -215,11 +216,11 @@ public final class Rules {
        * @see  #perform(com.aoapps.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)
        */
       protected abstract boolean matches(
-        FirewallContext context,
-        HttpServletRequest request,
-        Prefix prefix,
-        Path prefixPath,
-        Path path
+          FirewallContext context,
+          HttpServletRequest request,
+          Prefix prefix,
+          Path prefixPath,
+          Path path
       ) throws IOException, ServletException;
     }
 
@@ -241,16 +242,16 @@ public final class Rules {
       public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
         PathMatch<FirewallComponent> pathMatch = getPathMatch(context);
         return doMatches(
-          matches(
+            matches(
+                context,
+                request,
+                pathMatch.getPrefix(),
+                pathMatch.getPrefixPath(),
+                pathMatch.getPath()
+            ),
             context,
-            request,
-            pathMatch.getPrefix(),
-            pathMatch.getPrefixPath(),
-            pathMatch.getPath()
-          ),
-          context,
-          rules,
-          otherwise
+            rules,
+            otherwise
         );
       }
 
@@ -262,11 +263,11 @@ public final class Rules {
        * @see  #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)
        */
       protected abstract boolean matches(
-        FirewallContext context,
-        HttpServletRequest request,
-        Prefix prefix,
-        Path prefixPath,
-        Path path
+          FirewallContext context,
+          HttpServletRequest request,
+          Prefix prefix,
+          Path prefixPath,
+          Path path
       ) throws IOException, ServletException;
     }
 
@@ -820,7 +821,7 @@ public final class Rules {
         return new PathMatchMatcher() {
           @Override
           protected boolean matches(FirewallContext context, HttpServletRequest request, Prefix prefix, Path prefixPath, Path path) {
-             return pattern.matcher(prefix.toString()).matches();
+            return pattern.matcher(prefix.toString()).matches();
           }
         };
       }
@@ -990,6 +991,7 @@ public final class Rules {
         return matches(wildcardPattern, Arrays.asList(rules), Arrays.asList(otherwise));
       }
     }
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="prefixPath">
@@ -1729,6 +1731,7 @@ public final class Rules {
         return matches(wildcardPattern, Arrays.asList(rules), Arrays.asList(otherwise));
       }
     }
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="path">
