@@ -46,28 +46,46 @@ import java.util.concurrent.CopyOnWriteArrayList;
 // TODO: Per-component attributes?
 public class FirewallComponent {
 
+  /**
+   * Creates a new firewall component.
+   */
   public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Iterable<? extends Rule> rules) {
     FirewallComponent component = new FirewallComponent(prefixes);
     component.append(rules);
     return component;
   }
 
+  /**
+   * Creates a new firewall component.
+   */
   public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule ... rules) {
     return newInstance(prefixes, Arrays.asList(rules));
   }
 
+  /**
+   * Creates a new firewall component.
+   */
   public static FirewallComponent newInstance(Prefix[] prefixes, Iterable<? extends Rule> rules) {
     return newInstance(Arrays.asList(prefixes), rules);
   }
 
+  /**
+   * Creates a new firewall component.
+   */
   public static FirewallComponent newInstance(Prefix[] prefixes, Rule ... rules) {
     return newInstance(Arrays.asList(prefixes), rules);
   }
 
+  /**
+   * Creates a new firewall component.
+   */
   public static FirewallComponent newInstance(Prefix prefix, Iterable<? extends Rule> rules) {
     return newInstance(Collections.singleton(prefix), rules);
   }
 
+  /**
+   * Creates a new firewall component.
+   */
   // TODO: Overloads taking String instead of Prefix, to avoid call to Prefix.valueOf
   public static FirewallComponent newInstance(Prefix prefix, Rule ... rules) {
     return newInstance(Collections.singleton(prefix), rules);

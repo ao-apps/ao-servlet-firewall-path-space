@@ -43,7 +43,10 @@ import javax.servlet.annotation.WebListener;
  */
 public final class FirewallPathSpace {
 
-  @WebListener
+  /**
+   * Initializes the firewall {@link PathSpace} during {@linkplain ServletContextListener application start-up}.
+   */
+  @WebListener("Initializes the firewall PathSpace during application start-up.")
   public static class Initializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
@@ -64,7 +67,7 @@ public final class FirewallPathSpace {
    * creating a new instance if not yet present.
    */
   public static FirewallPathSpace getInstance(ServletContext servletContext) {
-    return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> {
+    return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(name -> {
       FirewallPathSpace instance = new FirewallPathSpace();
       // TODO: How do we register this with global rules?
       return instance;
