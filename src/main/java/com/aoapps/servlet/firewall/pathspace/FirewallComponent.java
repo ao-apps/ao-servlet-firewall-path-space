@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021, 2022, 2023  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -39,7 +39,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * {@link Rule rules}.  These rules are called after global rules for requests that
  * match the prefixes.
  * <p>
- * See <a href="../servlet-space">Servlet Space</a>.
+ * See <a href="https://oss.aoapps.com/servlet-firewall/filter/">AO Servlet Firewall Filter</a>.
  * TODO: Either move this page from semanticcms-core-controller, or link to it from here.
  * </p>
  */
