@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -38,10 +38,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * servlet {@link PathSpace path space}.  It also has an associated list of per-component
  * {@link Rule rules}.  These rules are called after global rules for requests that
  * match the prefixes.
- * <p>
- * See <a href="https://oss.aoapps.com/servlet-firewall/filter/">AO Servlet Firewall Filter</a>.
- * TODO: Either move this page from semanticcms-core-controller, or link to it from here.
- * </p>
+ *
+ * <p>See <a href="https://oss.aoapps.com/servlet-firewall/filter/">AO Servlet Firewall Filter</a>.
+ * TODO: Either move this page from semanticcms-core-controller, or link to it from here.</p>
  */
 // TODO: Per-component attributes?
 public class FirewallComponent {
@@ -130,10 +129,9 @@ public class FirewallComponent {
 
   /**
    * Gets an unmodifiable iterator to the rules.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * Is unmodifiable due to being implemented as {@link CopyOnWriteArrayList#iterator()}.</p>
    */
   public Iterable<Rule> getRulesIterable() {
     return rulesIter;

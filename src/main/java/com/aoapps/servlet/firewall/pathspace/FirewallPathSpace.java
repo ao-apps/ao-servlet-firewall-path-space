@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -37,9 +37,8 @@ import javax.servlet.annotation.WebListener;
 /**
  * Manages the allocation of the servlet {@link PathSpace path space} to registered
  * {@link FirewallComponent components}, creating per-module sets of firewall rules.
- * <p>
- * TODO: Should this be "ao-servlet-firewall-components"?
- * </p>
+ *
+ * <p>TODO: Should this be "ao-servlet-firewall-components"?</p>
  */
 public final class FirewallPathSpace {
 
