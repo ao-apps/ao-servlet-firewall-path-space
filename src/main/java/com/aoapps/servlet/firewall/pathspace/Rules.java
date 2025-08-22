@@ -185,9 +185,9 @@ public final class Rules {
         this.rules = rules;
       }
 
-      //private PathMatchMatcherWithRules(Rule ... rules) {
-      //  this(Arrays.asList(rules));
-      //}
+      // private PathMatchMatcherWithRules(Rule... rules) {
+      //   this(Arrays.asList(rules));
+      // }
 
       @Override
       public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
@@ -231,9 +231,9 @@ public final class Rules {
         this.otherwise = otherwise;
       }
 
-      //private PathMatchMatcherWithRulesAndOtherwise(Rule[] rules, Rule ... otherwise) {
-      //  this(Arrays.asList(rules), Arrays.asList(otherwise));
-      //}
+      // private PathMatchMatcherWithRulesAndOtherwise(Rule[] rules, Rule... otherwise) {
+      //   this(Arrays.asList(rules), Arrays.asList(otherwise));
+      // }
 
       @Override
       public final Result perform(FirewallContext context, HttpServletRequest request) throws IOException, ServletException {
@@ -337,7 +337,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule ... rules) {
+      public static Matcher startsWith(String prefix, Rule... rules) {
         if (rules.length == 0) {
           return startsWith(prefix);
         }
@@ -353,7 +353,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher startsWith(String prefix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return startsWith(prefix, rules);
         }
@@ -418,7 +418,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule ... rules) {
+      public static Matcher endsWith(String suffix, Rule... rules) {
         if (rules.length == 0) {
           return endsWith(suffix);
         }
@@ -434,7 +434,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher endsWith(String suffix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return endsWith(suffix, rules);
         }
@@ -499,7 +499,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule ... rules) {
+      public static Matcher contains(CharSequence substring, Rule... rules) {
         if (rules.length == 0) {
           return contains(substring);
         }
@@ -515,7 +515,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule[] rules, Rule ... otherwise) {
+      public static Matcher contains(CharSequence substring, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return contains(substring, rules);
         }
@@ -576,7 +576,7 @@ public final class Rules {
        *
        * @see  Prefix#equals(java.lang.Object)
        */
-      public static Matcher equals(Prefix target, Rule ... rules) {
+      public static Matcher equals(Prefix target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -591,7 +591,7 @@ public final class Rules {
        *
        * @see  Prefix#equals(java.lang.Object)
        */
-      public static Matcher equals(Prefix target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(Prefix target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -637,7 +637,7 @@ public final class Rules {
        *
        * @see  Prefix#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule ... rules) {
+      public static Matcher equals(String target, Rule... rules) {
         return equals(Prefix.valueOf(target), rules);
       }
 
@@ -649,7 +649,7 @@ public final class Rules {
        *
        * @see  Prefix#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(String target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -710,7 +710,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule ... rules) {
+      public static Matcher equals(CharSequence target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -725,7 +725,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(CharSequence target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -786,7 +786,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule ... rules) {
+      public static Matcher equalsIgnoreCase(String target, Rule... rules) {
         if (rules.length == 0) {
           return equalsIgnoreCase(target);
         }
@@ -801,7 +801,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equalsIgnoreCase(target, rules);
         }
@@ -866,7 +866,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule ... rules) {
+      public static Matcher matches(Pattern pattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(pattern);
         }
@@ -882,7 +882,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(Pattern pattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(pattern, rules);
         }
@@ -957,7 +957,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule ... rules) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(wildcardPattern);
         }
@@ -975,7 +975,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(wildcardPattern, rules);
         }
@@ -1054,7 +1054,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule ... rules) {
+      public static Matcher startsWith(String prefix, Rule... rules) {
         if (rules.length == 0) {
           return startsWith(prefix);
         }
@@ -1070,7 +1070,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher startsWith(String prefix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return startsWith(prefix, rules);
         }
@@ -1135,7 +1135,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule ... rules) {
+      public static Matcher endsWith(String suffix, Rule... rules) {
         if (rules.length == 0) {
           return endsWith(suffix);
         }
@@ -1151,7 +1151,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher endsWith(String suffix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return endsWith(suffix, rules);
         }
@@ -1216,7 +1216,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule ... rules) {
+      public static Matcher contains(CharSequence substring, Rule... rules) {
         if (rules.length == 0) {
           return contains(substring);
         }
@@ -1232,7 +1232,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule[] rules, Rule ... otherwise) {
+      public static Matcher contains(CharSequence substring, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return contains(substring, rules);
         }
@@ -1293,7 +1293,7 @@ public final class Rules {
        *
        * @see  Path#equals(java.lang.Object)
        */
-      public static Matcher equals(Path target, Rule ... rules) {
+      public static Matcher equals(Path target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -1308,7 +1308,7 @@ public final class Rules {
        *
        * @see  Path#equals(java.lang.Object)
        */
-      public static Matcher equals(Path target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(Path target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -1366,7 +1366,7 @@ public final class Rules {
        *
        * @see  Path#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule ... rules) {
+      public static Matcher equals(String target, Rule... rules) {
         try {
           return equals(Path.valueOf(target), rules);
         } catch (ValidationException e) {
@@ -1382,7 +1382,7 @@ public final class Rules {
        *
        * @see  Path#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(String target, Rule[] rules, Rule... otherwise) {
         try {
           return equals(Path.valueOf(target), rules, otherwise);
         } catch (ValidationException e) {
@@ -1444,7 +1444,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule ... rules) {
+      public static Matcher equals(CharSequence target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -1459,7 +1459,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(CharSequence target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -1520,7 +1520,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule ... rules) {
+      public static Matcher equalsIgnoreCase(String target, Rule... rules) {
         if (rules.length == 0) {
           return equalsIgnoreCase(target);
         }
@@ -1535,7 +1535,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equalsIgnoreCase(target, rules);
         }
@@ -1600,7 +1600,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule ... rules) {
+      public static Matcher matches(Pattern pattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(pattern);
         }
@@ -1616,7 +1616,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(Pattern pattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(pattern, rules);
         }
@@ -1691,7 +1691,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule ... rules) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(wildcardPattern);
         }
@@ -1709,7 +1709,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(wildcardPattern, rules);
         }
@@ -1788,7 +1788,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule ... rules) {
+      public static Matcher startsWith(String prefix, Rule... rules) {
         if (rules.length == 0) {
           return startsWith(prefix);
         }
@@ -1804,7 +1804,7 @@ public final class Rules {
        *
        * @see  String#startsWith(java.lang.String)
        */
-      public static Matcher startsWith(String prefix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher startsWith(String prefix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return startsWith(prefix, rules);
         }
@@ -1869,7 +1869,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule ... rules) {
+      public static Matcher endsWith(String suffix, Rule... rules) {
         if (rules.length == 0) {
           return endsWith(suffix);
         }
@@ -1885,7 +1885,7 @@ public final class Rules {
        *
        * @see  String#endsWith(java.lang.String)
        */
-      public static Matcher endsWith(String suffix, Rule[] rules, Rule ... otherwise) {
+      public static Matcher endsWith(String suffix, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return endsWith(suffix, rules);
         }
@@ -1950,7 +1950,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule ... rules) {
+      public static Matcher contains(CharSequence substring, Rule... rules) {
         if (rules.length == 0) {
           return contains(substring);
         }
@@ -1966,7 +1966,7 @@ public final class Rules {
        *
        * @see  String#contains(java.lang.CharSequence)
        */
-      public static Matcher contains(CharSequence substring, Rule[] rules, Rule ... otherwise) {
+      public static Matcher contains(CharSequence substring, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return contains(substring, rules);
         }
@@ -2027,7 +2027,7 @@ public final class Rules {
        *
        * @see  Path#equals(java.lang.Object)
        */
-      public static Matcher equals(Path target, Rule ... rules) {
+      public static Matcher equals(Path target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -2042,7 +2042,7 @@ public final class Rules {
        *
        * @see  Path#equals(java.lang.Object)
        */
-      public static Matcher equals(Path target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(Path target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -2100,7 +2100,7 @@ public final class Rules {
        *
        * @see  Path#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule ... rules) {
+      public static Matcher equals(String target, Rule... rules) {
         try {
           return equals(Path.valueOf(target), rules);
         } catch (ValidationException e) {
@@ -2118,7 +2118,7 @@ public final class Rules {
        *
        * @see  Path#valueOf(java.lang.String)
        */
-      public static Matcher equals(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(String target, Rule[] rules, Rule... otherwise) {
         try {
           return equals(Path.valueOf(target), rules, otherwise);
         } catch (ValidationException e) {
@@ -2180,7 +2180,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule ... rules) {
+      public static Matcher equals(CharSequence target, Rule... rules) {
         if (rules.length == 0) {
           return equals(target);
         }
@@ -2195,7 +2195,7 @@ public final class Rules {
        *
        * @see  String#contentEquals(java.lang.CharSequence)
        */
-      public static Matcher equals(CharSequence target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equals(CharSequence target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equals(target, rules);
         }
@@ -2256,7 +2256,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule ... rules) {
+      public static Matcher equalsIgnoreCase(String target, Rule... rules) {
         if (rules.length == 0) {
           return equalsIgnoreCase(target);
         }
@@ -2271,7 +2271,7 @@ public final class Rules {
        *
        * @see  String#equalsIgnoreCase(java.lang.String)
        */
-      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule ... otherwise) {
+      public static Matcher equalsIgnoreCase(String target, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return equalsIgnoreCase(target, rules);
         }
@@ -2336,7 +2336,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule ... rules) {
+      public static Matcher matches(Pattern pattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(pattern);
         }
@@ -2352,7 +2352,7 @@ public final class Rules {
        * @see  Pattern#compile(java.lang.String)
        * @see  Pattern#compile(java.lang.String, int)
        */
-      public static Matcher matches(Pattern pattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(Pattern pattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(pattern, rules);
         }
@@ -2427,7 +2427,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule ... rules) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule... rules) {
         if (rules.length == 0) {
           return matches(wildcardPattern);
         }
@@ -2445,7 +2445,7 @@ public final class Rules {
        *
        * @see  WildcardPatternMatcher#compile(java.lang.String)
        */
-      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule ... otherwise) {
+      public static Matcher matches(WildcardPatternMatcher wildcardPattern, Rule[] rules, Rule... otherwise) {
         if (otherwise.length == 0) {
           return matches(wildcardPattern, rules);
         }

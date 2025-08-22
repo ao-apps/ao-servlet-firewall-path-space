@@ -104,7 +104,7 @@ public final class FirewallPathSpace {
    *          TODO: At this time this means the components could be partially registered when it has multiple paths.
    */
   // TODO: Rename "register" or "allocate" to be more clear this is reserving a space?
-  public FirewallPathSpace add(FirewallComponent ... components) throws PrefixConflictException {
+  public FirewallPathSpace add(FirewallComponent... components) throws PrefixConflictException {
     for (FirewallComponent component : components) {
       add(component);
     }

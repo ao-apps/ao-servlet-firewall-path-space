@@ -57,7 +57,7 @@ public class FirewallComponent {
   /**
    * Creates a new firewall component.
    */
-  public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule ... rules) {
+  public static FirewallComponent newInstance(Iterable<? extends Prefix> prefixes, Rule... rules) {
     return newInstance(prefixes, Arrays.asList(rules));
   }
 
@@ -71,7 +71,7 @@ public class FirewallComponent {
   /**
    * Creates a new firewall component.
    */
-  public static FirewallComponent newInstance(Prefix[] prefixes, Rule ... rules) {
+  public static FirewallComponent newInstance(Prefix[] prefixes, Rule... rules) {
     return newInstance(Arrays.asList(prefixes), rules);
   }
 
@@ -86,7 +86,7 @@ public class FirewallComponent {
    * Creates a new firewall component.
    */
   // TODO: Overloads taking String instead of Prefix, to avoid call to Prefix.valueOf
-  public static FirewallComponent newInstance(Prefix prefix, Rule ... rules) {
+  public static FirewallComponent newInstance(Prefix prefix, Rule... rules) {
     return newInstance(Collections.singleton(prefix), rules);
   }
 
@@ -147,7 +147,7 @@ public class FirewallComponent {
   /**
    * Inserts rules into the beginning of this component.
    */
-  public void prepend(Rule ... rules) {
+  public void prepend(Rule... rules) {
     prepend(Arrays.asList(rules));
   }
 
@@ -161,7 +161,7 @@ public class FirewallComponent {
   /**
    * Inserts rules into the end of this component.
    */
-  public void append(Rule ... rules) {
+  public void append(Rule... rules) {
     append(Arrays.asList(rules));
   }
 }
