@@ -1,6 +1,6 @@
 /*
  * ao-servlet-firewall-path-space - Path space for servlet-based application request filtering.
- * Copyright (C) 2018, 2020, 2021, 2022, 2024  AO Industries, Inc.
+ * Copyright (C) 2018, 2020, 2021, 2022, 2024, 2025, 2026  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -38,11 +38,11 @@ import com.aoapps.servlet.firewall.api.Matcher;
 import com.aoapps.servlet.firewall.api.Matcher.Result;
 import com.aoapps.servlet.firewall.api.Rule;
 import com.aoapps.servlet.http.Dispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.Pattern;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * A set of {@link Matcher} and {@link Action} implementations for {@link PathSpace} and {@link PathMatch}.
@@ -85,7 +85,7 @@ public final class Rules {
      * {@link Result#MATCH} when a component is found and rule traversal has been completed without any terminating {@link Action}.<br>
      * {@link Result#NO_MATCH} when no component matches the current servlet path.</p>
      *
-     * @see  Dispatcher#getCurrentPagePath(javax.servlet.http.HttpServletRequest)
+     * @see  Dispatcher#getCurrentPagePath(jakarta.servlet.http.HttpServletRequest)
      */
     public static final Matcher doFirewallComponent = (context, request) -> {
       try {
@@ -162,7 +162,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)}.
+       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
@@ -206,7 +206,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.rules.FirewallContext, javax.servlet.http.HttpServletRequest)}.
+       * See {@link #perform(com.aoapps.servlet.firewall.rules.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
@@ -253,7 +253,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, javax.servlet.http.HttpServletRequest)}.
+       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
