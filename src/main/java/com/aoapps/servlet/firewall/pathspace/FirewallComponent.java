@@ -110,7 +110,7 @@ public class FirewallComponent {
   }
 
   /**
-   * An unmodifiable wrapper around rules for {@link #getRules()}.
+   * An unmodifiable wrapper around rules for {@link FirewallComponent#getRules()}.
    */
   private final List<Rule> unmodifiableRules = Collections.unmodifiableList(rules);
 
@@ -123,7 +123,7 @@ public class FirewallComponent {
 
   /**
    * A small wrapper to prevent casting back to underlying list from the object
-   * returned from {@link #getRulesIterable()}.
+   * returned from {@link FirewallComponent#getRulesIterable()}.
    */
   private final Iterable<Rule> rulesIter = rules::iterator;
 

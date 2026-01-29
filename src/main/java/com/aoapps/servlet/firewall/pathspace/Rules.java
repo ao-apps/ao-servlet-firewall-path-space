@@ -162,7 +162,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
+       * See {@link PathMatchMatcher#perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
@@ -206,7 +206,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.rules.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
+       * See {@link PathMatchMatcherWithRules#perform(com.aoapps.servlet.firewall.rules.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
@@ -253,7 +253,7 @@ public final class Rules {
       }
 
       /**
-       * See {@link #perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
+       * See {@link PathMatchMatcherWithRulesAndOtherwise#perform(com.aoapps.servlet.firewall.api.FirewallContext, jakarta.servlet.http.HttpServletRequest)}.
        *
        * @param  prefix  See {@link PathMatch#getPrefix()}
        * @param  prefixPath  See {@link PathMatch#getPrefixPath()}
